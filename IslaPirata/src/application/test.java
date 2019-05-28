@@ -27,7 +27,7 @@ public class test {
 		//System.out.printf("%s  %s  %s  %s  %s  %s %s %s", dado1.toString(), dado2.toString(), dado3.toString(), dado4.toString(), dado5.toString(), dado6.toString(), dado7.toString(), dado8.toString());
 		Tirada tirada = new Tirada();
 		
-		System.out.println(tirada.calcularPuntuacion(tirada.obtenerTirada(dados)));;
+		//System.out.println(tirada.calcularPuntuacion(tirada.obtenerTirada(dados)));;
 
 	}
 

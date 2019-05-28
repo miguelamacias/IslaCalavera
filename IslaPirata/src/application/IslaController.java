@@ -11,6 +11,7 @@ public class IslaController {
 	Dado[] dados;
 	Tirada tirada;
 	ImageView[] imagenes;
+	Boolean[] dadosMarcados;
 	
 	//Declaración de variables para el SceneBuilder
 	@FXML
@@ -58,13 +59,22 @@ public class IslaController {
 			dados[i] = new Dado();
 		}
 		
-		
+		//Crea la array de dados a jugar
+		dadosMarcados = new Boolean[9];
+		dadosMarcados[1] = true;
+		dadosMarcados[2] = true;
+		dadosMarcados[3] = true;
+		dadosMarcados[4] = true;
+		dadosMarcados[5] = true;
+		dadosMarcados[6] = true;
+		dadosMarcados[7] = true;
+		dadosMarcados[8] = true;
 	}
 	
 	@FXML
 	void tirar(ActionEvent event) {
 		//Realiza una tirada y calcula los puntos obtenidos
-		int puntos = tirada.calcularPuntuacion(tirada.obtenerTirada(dados));
+		int puntos = tirada.calcularPuntuacion(tirada.obtenerTirada(dados, dadosMarcados));
 		resultado.setText(String.valueOf(puntos));
 		
 		//Establece las imágenes correspondientes de cada dado.
@@ -72,7 +82,10 @@ public class IslaController {
 			String rutaImagen = String.format("/res/%s.png", dados[i].toString());
 			Image imagen = new Image(rutaImagen);
 			imagenes[i].setImage(imagen);
-		  }	
+		  }
+		
+		dadosMarcados[7] = false;
+		dadosMarcados[8] = false;
 	}
 	
 	private void crearArrayImageViews() {
