@@ -9,7 +9,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="742.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IslaController">
    <children>
-      <Button fx:id="tirar" layoutX="439.0" layoutY="459.0" mnemonicParsing="false" onAction="#tirar" text="Tirar dados" />
+      <Button fx:id="tirar" layoutX="804.0" layoutY="321.0" mnemonicParsing="false" onAction="#tirar" text="Tirar dados" />
       <ImageView fx:id="img6" fitHeight="150.0" fitWidth="150.0" layoutX="225.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/1Calavera.png" />
@@ -60,5 +60,13 @@
             <Font size="43.0" />
          </font>
       </Label>
+      <CheckBox fx:id="chkDado1" layoutX="78.0" layoutY="390.0" mnemonicParsing="false" selected="true" text="CheckBox" />
+      <CheckBox fx:id="chkDado5" layoutX="78.0" layoutY="437.0" mnemonicParsing="false" selected="true" text="CheckBox" />
+      <CheckBox fx:id="chkDado2" layoutX="254.0" layoutY="390.0" mnemonicParsing="false" selected="true" text="CheckBox" />
+      <CheckBox fx:id="chkDado6" layoutX="254.0" layoutY="437.0" mnemonicParsing="false" selected="true" text="CheckBox" />
+      <CheckBox fx:id="chkDado3" layoutX="425.0" layoutY="390.0" mnemonicParsing="false" selected="true" text="CheckBox" />
+      <CheckBox fx:id="chkDado7" layoutX="425.0" layoutY="437.0" mnemonicParsing="false" selected="true" text="CheckBox" />
+      <CheckBox fx:id="chkDado4" layoutX="598.0" layoutY="390.0" mnemonicParsing="false" selected="true" text="CheckBox" />
+      <CheckBox fx:id="chkDado8" layoutX="598.0" layoutY="437.0" mnemonicParsing="false" selected="true" text="CheckBox" />
    </children>
 </Pane>
