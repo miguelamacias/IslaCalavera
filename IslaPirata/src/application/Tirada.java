@@ -1,19 +1,17 @@
 package application;
 
 public class Tirada {
-	private int[] resultado;
-	public Tirada() {
-		//Array que almacena las veces que ha salido cada cara
-		resultado = new int[7];
-	}
-	
+		
 	public int[] obtenerTirada(Dado[] dados, Boolean[] dadosMarcados) {
+		int[] resultado = new int[7];
+		
 		//Tira los dados
 		for (int i = 1; i < dados.length; i++) {
 			if (dadosMarcados[i]) {
 				resultado[dados[i].tirar()] ++;
+			} else {
+				resultado[dados[i].getValorCara()] ++;
 			}
-			
 		}
 		
 		return resultado;

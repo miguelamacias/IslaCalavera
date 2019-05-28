@@ -26,8 +26,8 @@ public class Dado {
 		return valorCara + textoCara;
 	}
 	
-	public String getValorCara() {
-		return String.valueOf(valorCara);
+	public int getValorCara() {
+		return valorCara;
 	}
 	
 }
