@@ -1,11 +1,15 @@
 package application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class IslaController {
 	//Variables de instancia
@@ -14,6 +18,8 @@ public class IslaController {
 	ImageView[] imagenes;
 	Boolean[] dadosMarcados;
 	CheckBox[] checkboxes;
+	boolean[] dadosBloqueados;
+	int ronda;
 	
 	//Declaración de variables para el SceneBuilder
 	@FXML
@@ -78,6 +84,7 @@ public class IslaController {
 		tirada = new Tirada();
 		imagenes = new ImageView[9];
 		checkboxes = new CheckBox[9];
+		dadosBloqueados = new boolean[9];
 		inicializarArrays();
 		
 		//Crea la array de los 8 dados del juego
@@ -88,7 +95,14 @@ public class IslaController {
 	
 	@FXML
 	void tirar(ActionEvent event) {
-		marcarDados();
+		seleccionarDadosMarcados();
+		
+		//Control de calaveras
+		for (int i = 0; i < dadosBloqueados.length; i++) {
+			if (dadosBloqueados[i]) {
+				dadosMarcados[i] = false; 
+			}
+		}
 		
 		//Realiza una tirada y calcula los puntos obtenidos
 		int puntos = tirada.calcularPuntuacion(tirada.obtenerTirada(dados, dadosMarcados));
@@ -99,10 +113,87 @@ public class IslaController {
 			String rutaImagen = String.format("/res/%s.png", dados[i].toString());
 			Image imagen = new Image(rutaImagen);
 			imagenes[i].setImage(imagen);
+			
+			//bloquea las calaveras
+			if (dados[i].getValorCara() == 1) {
+				dadosBloqueados[i] = true;
+				imagenes[i].setEffect(new ColorAdjust(0,0,-0.4,0));
+			}
 		  }
+		
+		//termina el juego por calaveras
+		if (puntos == -1) {
+			tirar.setDisable(true);
+			
+			Alert errorAlert = new Alert(AlertType.WARNING);
+			errorAlert.setHeaderText("Fin del juego");
+			errorAlert.setContentText("Te han salido 3 o más calaveras. Vuelve a intentarlo.");
+			errorAlert.showAndWait();
+		}
 	}
 	
-	private void marcarDados() {
+	@FXML
+	private void seleccionarDados(MouseEvent event) {
+		ImageView origen = (ImageView) event.getSource();
+		
+		switch (origen.getId()) {
+		case "img1":
+			cambiarEstadoDado(chkDado1);
+			efectosEstadoDado(img1, chkDado1);
+			break;
+		case "img2":
+			cambiarEstadoDado(chkDado2);
+			efectosEstadoDado(img2, chkDado2);
+			break;
+		case "img3":
+			cambiarEstadoDado(chkDado3);
+			efectosEstadoDado(img3, chkDado3);
+			break;
+		case "img4":
+			cambiarEstadoDado(chkDado4);
+			efectosEstadoDado(img4, chkDado4);
+			break;
+		case "img5":
+			cambiarEstadoDado(chkDado5);
+			efectosEstadoDado(img5, chkDado5);
+			break;
+		case "img6":
+			cambiarEstadoDado(chkDado6);
+			efectosEstadoDado(img6, chkDado6);
+			break;
+		case "img7":
+			cambiarEstadoDado(chkDado7);
+			efectosEstadoDado(img7, chkDado7);
+			break;
+		case "img8":
+			cambiarEstadoDado(chkDado8);
+			efectosEstadoDado(img8, chkDado8);
+			break;
+
+		default:
+			break;
+		}
+	}
+	
+	private void cambiarEstadoDado(CheckBox chck) {
+		if (chck.isSelected()) {
+			chck.setSelected(false);
+		} else {
+			chck.setSelected(true);
+		}
+	}
+	
+	private void efectosEstadoDado(ImageView img, CheckBox chck) {
+		ColorAdjust oscurecer = new ColorAdjust(0,0,-0.4,0);
+		ColorAdjust aclarar = new ColorAdjust(0,0,0,0);
+		
+		if (chck.isSelected()) {
+			img.setEffect(aclarar);
+		} else {
+			img.setEffect(oscurecer);
+		}
+	}
+	private void seleccionarDadosMarcados() {
 		dadosMarcados[1] = chkDado1.isSelected();
 		dadosMarcados[2] = chkDado2.isSelected();
 		dadosMarcados[3] = chkDado3.isSelected();
@@ -124,7 +215,7 @@ public class IslaController {
 		imagenes[7] = img7;
 		imagenes[8] = img8;
 		
-		//Crea la array de dados a jugar
+		//Inicilaiza la array que controla los dados que juegan
 		dadosMarcados = new Boolean[9];
 		dadosMarcados[1] = true;
 		dadosMarcados[2] = true;

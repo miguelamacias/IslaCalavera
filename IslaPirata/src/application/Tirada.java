@@ -49,7 +49,9 @@ public class Tirada {
 				break;
 			}
 		}
-		
+		if (puntuaciones[1] >= 3) {
+			puntuacion = -1;
+		}
 		return puntuacion;
 	}
 	
