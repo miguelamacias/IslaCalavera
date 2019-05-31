@@ -11,7 +11,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="742.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IslaController">
    <children>
-      <Button fx:id="tirar" layoutX="888.0" layoutY="327.0" mnemonicParsing="false" onAction="#tirar" text="Tirar dados" />
+      <Button fx:id="tirar" layoutX="759.0" layoutY="327.0" mnemonicParsing="false" onAction="#tirar" text="Tirar dados" />
       <ImageView fx:id="img6" fitHeight="150.0" fitWidth="150.0" layoutX="225.0" layoutY="208.0" onMouseClicked="#seleccionarDados" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/1Calavera.png" />
@@ -71,5 +71,26 @@
       <CheckBox fx:id="chkDado4" disable="true" layoutX="1038.0" layoutY="41.0" mnemonicParsing="false" selected="true" text="CheckBox" />
       <CheckBox fx:id="chkDado8" disable="true" layoutX="1038.0" layoutY="75.0" mnemonicParsing="false" selected="true" text="CheckBox" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="85.0" layoutX="724.0" layoutY="33.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="422.0" />
+      <Label layoutX="49.0" layoutY="411.0" text="Ronda nº:">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Label fx:id="rondaLbl" layoutX="206.0" layoutY="411.0" text="1">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Button fx:id="nuevaRonda" layoutX="870.0" layoutY="327.0" mnemonicParsing="false" onAction="#nuevaRonda" text="Guardar puntuación / Siguiente Ronda" />
+      <Label layoutX="759.0" layoutY="411.0" text="Total acumulado:">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Label fx:id="acumulado" layoutX="1027.0" layoutY="404.0" text="00">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

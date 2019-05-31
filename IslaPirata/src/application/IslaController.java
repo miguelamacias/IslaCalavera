@@ -1,4 +1,6 @@
 package application;
+import java.util.Arrays;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -76,6 +78,14 @@ public class IslaController {
 	@FXML
 	private CheckBox chkDado8;
 	
+	@FXML
+	private Label rondaLbl;
+	
+	@FXML
+	private Button nuevaRonda;
+	
+	@FXML
+	private Label acumulado;
 	
 	@FXML
 	void initialize() {
@@ -85,6 +95,8 @@ public class IslaController {
 		imagenes = new ImageView[9];
 		checkboxes = new CheckBox[9];
 		dadosBloqueados = new boolean[9];
+		ronda = 1;
+		acumulado.setText("0");
 		inicializarArrays();
 		
 		//Crea la array de los 8 dados del juego
@@ -173,6 +185,35 @@ public class IslaController {
 		default:
 			break;
 		}
+	}
+	
+	@FXML
+	private void nuevaRonda(ActionEvent event) {
+		//Si la puntuación no es -1 (calaveras) se suma al total
+		if (Integer.parseInt(resultado.getText()) != -1) {
+			int acumuladoInt = Integer.parseInt(acumulado.getText());
+			acumuladoInt += Integer.parseInt(resultado.getText());
+			acumulado.setText(String.valueOf(acumuladoInt));
+		}
+		
+		//Cambia el número de ronda
+		rondaLbl.setText(String.valueOf(++ronda));
+		
+		//reinicia los datos de la tirada
+		Arrays.fill(dadosBloqueados, false);
+		Arrays.fill(dadosMarcados, true);
+		resultado.setText("0");
+		
+		//Activa el boton de jugar
+		tirar.setDisable(false);
+		
+		//Desactiva los efectos de los dados y reinicia la imagen
+		for (int i = 1; i < imagenes.length; i++) {
+			imagenes[i].setEffect(new ColorAdjust(0, 0, 0, 0));
+			imagenes[i].setImage(new Image("/res/1Calavera.png"));
+			checkboxes[i].setSelected(true);
+		}
+		
 	}
 	
 	private void cambiarEstadoDado(CheckBox chck) {
