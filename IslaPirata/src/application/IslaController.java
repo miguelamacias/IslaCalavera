@@ -1,13 +1,20 @@
 package application;
-import java.util.Arrays;
 
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TextInputDialog;
+
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -108,13 +115,7 @@ public class IslaController {
 	@FXML
 	void tirar(ActionEvent event) {
 		seleccionarDadosMarcados();
-		
-		//Control de calaveras
-		for (int i = 0; i < dadosBloqueados.length; i++) {
-			if (dadosBloqueados[i]) {
-				dadosMarcados[i] = false; 
-			}
-		}
+		controlCalaveras();
 		
 		//Realiza una tirada y calcula los puntos obtenidos
 		int puntos = tirada.calcularPuntuacion(tirada.obtenerTirada(dados, dadosMarcados));
@@ -136,12 +137,20 @@ public class IslaController {
 		//termina el juego por calaveras
 		if (puntos == -1) {
 			tirar.setDisable(true);
-			
-			Alert errorAlert = new Alert(AlertType.WARNING);
-			errorAlert.setHeaderText("Fin del juego");
-			errorAlert.setContentText("Te han salido 3 o más calaveras. Vuelve a intentarlo.");
-			errorAlert.showAndWait();
 		}
+		
+		evitarTiradaIndividual();
+	}
+	
+	@FXML
+	private void controlCalaveras() {
+		//Control de calaveras
+		for (int i = 0; i < dadosBloqueados.length; i++) {
+			if (dadosBloqueados[i]) {
+				dadosMarcados[i] = false; 
+			}
+		}
+
 	}
 	
 	@FXML
@@ -185,6 +194,30 @@ public class IslaController {
 		default:
 			break;
 		}
+		
+		evitarTiradaIndividual();
+		
+		
+	}
+	
+	@FXML
+	private void evitarTiradaIndividual() {
+		seleccionarDadosMarcados();
+		controlCalaveras();
+		
+		int checkMarcados = 0;
+		
+		for (int i = 1; i < dadosMarcados.length; i++) {
+			if (dadosMarcados[i]) {
+				checkMarcados++;
+			}
+		}
+		
+		if (checkMarcados < 2) {
+			tirar.setDisable(true);
+		} else {
+			tirar.setDisable(false);
+		}
 	}
 	
 	@FXML
@@ -196,24 +229,59 @@ public class IslaController {
 			acumulado.setText(String.valueOf(acumuladoInt));
 		}
 		
-		//Cambia el número de ronda
-		rondaLbl.setText(String.valueOf(++ronda));
-		
-		//reinicia los datos de la tirada
-		Arrays.fill(dadosBloqueados, false);
-		Arrays.fill(dadosMarcados, true);
-		resultado.setText("0");
-		
-		//Activa el boton de jugar
-		tirar.setDisable(false);
-		
-		//Desactiva los efectos de los dados y reinicia la imagen
-		for (int i = 1; i < imagenes.length; i++) {
-			imagenes[i].setEffect(new ColorAdjust(0, 0, 0, 0));
-			imagenes[i].setImage(new Image("/res/1Calavera.png"));
-			checkboxes[i].setSelected(true);
+		if (ronda < 10) {
+			//Cambia el número de ronda
+			rondaLbl.setText(String.valueOf(++ronda));
+			//reinicia los datos de la tirada
+			Arrays.fill(dadosBloqueados, false);
+			Arrays.fill(dadosMarcados, true);
+			resultado.setText("0");
+			//Activa el boton de jugar
+			tirar.setDisable(false);
+			//Desactiva los efectos de los dados y reinicia la imagen
+			for (int i = 1; i < imagenes.length; i++) {
+				imagenes[i].setEffect(new ColorAdjust(0, 0, 0, 0));
+				imagenes[i].setImage(new Image("/res/1Calavera.png"));
+				checkboxes[i].setSelected(true);
+			}
+		} else {
+			terminarJuego();
 		}
 		
+	}
+	
+	private void terminarJuego() {
+		nuevaRonda.setDisable(true);
+		tirar.setDisable(true);
+		int acumuladoInt = Integer.parseInt(acumulado.getText());
+
+		TextInputDialog mensajeFinal = new TextInputDialog();
+		mensajeFinal.setTitle("Guardar puntuación");
+		mensajeFinal.setHeaderText("¡Fin del juego! Has terminado las 10 rondas.");
+		mensajeFinal.setContentText("Introduce tu nombre para guardar tu puntuación.");
+		Optional<String> nombre = mensajeFinal.showAndWait();
+		
+		if (nombre.isPresent()) {
+			try {
+				guardarPuntuacionBD(nombre.get(), acumuladoInt);
+			} catch (Exception e) {
+				//Error al guardar la puntuacion
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+	}
+	
+	public void guardarPuntuacionBD(String nombre, int puntuacion) throws Exception {
+		Class.forName("com.mysql.jdbc.Driver");
+		
+		Connection conexion = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/BC7Yxrr0d0", "BC7Yxrr0d0", "HqgJ0PxyA1");
+		PreparedStatement sentencia = conexion.prepareStatement("INSERT INTO puntuaciones (nombre, puntuacion) VALUES(?, ?)");
+		sentencia.setString(1, nombre);
+		sentencia.setInt(2, puntuacion);
+		sentencia.executeUpdate();
 	}
 	
 	private void cambiarEstadoDado(CheckBox chck) {
