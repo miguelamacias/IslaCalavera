@@ -1,10 +1,16 @@
 package application;
 
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.ResultSet;
+
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Optional;
 import javafx.event.ActionEvent;
@@ -13,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputDialog;
 
 import javafx.scene.effect.ColorAdjust;
@@ -95,6 +102,9 @@ public class IslaController {
 	private Label acumulado;
 	
 	@FXML
+	private TextArea areaPuntuaciones;
+	
+	@FXML
 	void initialize() {
 		//Inicializa las variables de instancia.
 		dados = new Dado[9];
@@ -105,6 +115,12 @@ public class IslaController {
 		ronda = 1;
 		acumulado.setText("0");
 		inicializarArrays();
+		try {
+			mostrarPuntuaciones();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		//Crea la array de los 8 dados del juego
 		for (int i = 1; i < dados.length; i++) {
@@ -274,6 +290,38 @@ public class IslaController {
 		
 	}
 	
+	public void mostrarPuntuaciones() throws Exception {
+		Class.forName("com.mysql.jdbc.Driver");
+		
+		Connection conexion = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/BC7Yxrr0d0", "BC7Yxrr0d0", "HqgJ0PxyA1");
+		Statement sentencia = conexion.createStatement();
+		ResultSet resultado = sentencia.executeQuery("SELECT nombre, puntuacion, fecha FROM puntuaciones ORDER BY fecha");
+		areaPuntuaciones.setText("Nombre \t\t Puntuacion \t\t Hora \n\n");
+		while (resultado.next()) {
+			areaPuntuaciones.appendText(resultado.getString(1));
+			areaPuntuaciones.appendText("\t\t");
+			areaPuntuaciones.appendText(resultado.getString(2));
+			areaPuntuaciones.appendText("\t\t");
+			Timestamp fecha = resultado.getTimestamp(3);
+			areaPuntuaciones.appendText(formatearFecha(fecha));
+			areaPuntuaciones.appendText("\n");
+			
+		}
+		sentencia.close();
+		resultado.close();
+		conexion.close();
+	}
+	
+	public String formatearFecha(Timestamp fecha) {
+		
+		
+		LocalDateTime objetoFecha = fecha.toLocalDateTime();
+		
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("hh:mm - dd/MM/yy");
+		
+		return objetoFecha.format(formato);
+	}
+	
 	public void guardarPuntuacionBD(String nombre, int puntuacion) throws Exception {
 		Class.forName("com.mysql.jdbc.Driver");
 		
@@ -282,6 +330,11 @@ public class IslaController {
 		sentencia.setString(1, nombre);
 		sentencia.setInt(2, puntuacion);
 		sentencia.executeUpdate();
+		sentencia.close();
+		conexion.close();
+		
+		mostrarPuntuaciones();
+		
 	}
 	
 	private void cambiarEstadoDado(CheckBox chck) {

@@ -11,66 +11,66 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="742.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IslaController">
    <children>
-      <Button fx:id="tirar" layoutX="759.0" layoutY="327.0" mnemonicParsing="false" onAction="#tirar" text="Tirar dados" />
-      <ImageView fx:id="img6" fitHeight="150.0" fitWidth="150.0" layoutX="225.0" layoutY="208.0" onMouseClicked="#seleccionarDados" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="tirar" layoutX="49.0" layoutY="496.0" mnemonicParsing="false" onAction="#tirar" text="Tirar dados" />
+      <ImageView fx:id="img6" fitHeight="150.0" fitWidth="150.0" layoutX="224.0" layoutY="202.0" onMouseClicked="#seleccionarDados" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/1Calavera.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="img5" fitHeight="150.0" fitWidth="150.0" layoutX="49.0" layoutY="208.0" onMouseClicked="#seleccionarDados" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img5" fitHeight="150.0" fitWidth="150.0" layoutX="48.0" layoutY="202.0" onMouseClicked="#seleccionarDados" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/1Calavera.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="img1" fitHeight="150.0" fitWidth="150.0" layoutX="49.0" layoutY="41.0" onMouseClicked="#seleccionarDados" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img1" fitHeight="150.0" fitWidth="150.0" layoutX="48.0" layoutY="35.0" onMouseClicked="#seleccionarDados" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/1Calavera.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="img2" fitHeight="150.0" fitWidth="150.0" layoutX="225.0" layoutY="41.0" onMouseClicked="#seleccionarDados" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img2" fitHeight="150.0" fitWidth="150.0" layoutX="224.0" layoutY="35.0" onMouseClicked="#seleccionarDados" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/1Calavera.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="img3" fitHeight="150.0" fitWidth="150.0" layoutX="396.0" layoutY="41.0" onMouseClicked="#seleccionarDados" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img3" fitHeight="150.0" fitWidth="150.0" layoutX="395.0" layoutY="35.0" onMouseClicked="#seleccionarDados" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/1Calavera.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="img7" fitHeight="150.0" fitWidth="150.0" layoutX="396.0" layoutY="208.0" onMouseClicked="#seleccionarDados" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img7" fitHeight="150.0" fitWidth="150.0" layoutX="395.0" layoutY="202.0" onMouseClicked="#seleccionarDados" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/1Calavera.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="img4" fitHeight="150.0" fitWidth="150.0" layoutX="569.0" layoutY="41.0" onMouseClicked="#seleccionarDados" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img4" fitHeight="150.0" fitWidth="150.0" layoutX="568.0" layoutY="35.0" onMouseClicked="#seleccionarDados" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/1Calavera.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="img8" fitHeight="150.0" fitWidth="150.0" layoutX="569.0" layoutY="208.0" onMouseClicked="#seleccionarDados" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img8" fitHeight="150.0" fitWidth="150.0" layoutX="568.0" layoutY="202.0" onMouseClicked="#seleccionarDados" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/1Calavera.png" />
          </image>
       </ImageView>
-      <Label layoutX="759.0" layoutY="183.0" text="Puntuación:">
+      <Label layoutX="383.0" layoutY="411.0" text="Puntuación:">
          <font>
             <Font size="34.0" />
          </font>
       </Label>
-      <Label fx:id="resultado" layoutX="965.0" layoutY="176.0" text="00">
+      <Label fx:id="resultado" layoutX="577.0" layoutY="404.0" text="00">
          <font>
             <Font size="43.0" />
          </font>
       </Label>
-      <CheckBox fx:id="chkDado1" disable="true" layoutX="731.0" layoutY="41.0" mnemonicParsing="false" selected="true" text="CheckBox" />
-      <CheckBox fx:id="chkDado5" disable="true" layoutX="731.0" layoutY="75.0" mnemonicParsing="false" selected="true" text="CheckBox" />
-      <CheckBox fx:id="chkDado2" disable="true" layoutX="836.0" layoutY="41.0" mnemonicParsing="false" selected="true" text="CheckBox" />
-      <CheckBox fx:id="chkDado6" disable="true" layoutX="836.0" layoutY="75.0" mnemonicParsing="false" selected="true" text="CheckBox" />
-      <CheckBox fx:id="chkDado3" disable="true" layoutX="935.0" layoutY="41.0" mnemonicParsing="false" selected="true" text="CheckBox" />
-      <CheckBox fx:id="chkDado7" disable="true" layoutX="935.0" layoutY="75.0" mnemonicParsing="false" selected="true" text="CheckBox" />
-      <CheckBox fx:id="chkDado4" disable="true" layoutX="1038.0" layoutY="41.0" mnemonicParsing="false" selected="true" text="CheckBox" />
-      <CheckBox fx:id="chkDado8" disable="true" layoutX="1038.0" layoutY="75.0" mnemonicParsing="false" selected="true" text="CheckBox" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="85.0" layoutX="724.0" layoutY="33.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="422.0" />
+      <CheckBox fx:id="chkDado1" disable="true" layoutX="759.0" layoutY="41.0" mnemonicParsing="false" selected="true" text="CheckBox" />
+      <CheckBox fx:id="chkDado5" disable="true" layoutX="759.0" layoutY="75.0" mnemonicParsing="false" selected="true" text="CheckBox" />
+      <CheckBox fx:id="chkDado2" disable="true" layoutX="864.0" layoutY="41.0" mnemonicParsing="false" selected="true" text="CheckBox" />
+      <CheckBox fx:id="chkDado6" disable="true" layoutX="864.0" layoutY="75.0" mnemonicParsing="false" selected="true" text="CheckBox" />
+      <CheckBox fx:id="chkDado3" disable="true" layoutX="963.0" layoutY="41.0" mnemonicParsing="false" selected="true" text="CheckBox" />
+      <CheckBox fx:id="chkDado7" disable="true" layoutX="963.0" layoutY="75.0" mnemonicParsing="false" selected="true" text="CheckBox" />
+      <CheckBox fx:id="chkDado4" disable="true" layoutX="1066.0" layoutY="41.0" mnemonicParsing="false" selected="true" text="CheckBox" />
+      <CheckBox fx:id="chkDado8" disable="true" layoutX="1066.0" layoutY="75.0" mnemonicParsing="false" selected="true" text="CheckBox" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="85.0" layoutX="742.0" layoutY="33.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="447.0" />
       <Label layoutX="49.0" layoutY="411.0" text="Ronda nº:">
          <font>
             <Font size="34.0" />
@@ -81,15 +81,24 @@
             <Font size="34.0" />
          </font>
       </Label>
-      <Button fx:id="nuevaRonda" layoutX="870.0" layoutY="327.0" mnemonicParsing="false" onAction="#nuevaRonda" text="Guardar puntuación / Siguiente Ronda" />
-      <Label layoutX="759.0" layoutY="411.0" text="Total acumulado:">
+      <Button fx:id="nuevaRonda" layoutX="189.0" layoutY="496.0" mnemonicParsing="false" onAction="#nuevaRonda" text="Guardar puntuación / Siguiente Ronda" />
+      <Label layoutX="742.0" layoutY="125.0" text="Total acumulado:">
          <font>
             <Font size="34.0" />
          </font>
       </Label>
-      <Label fx:id="acumulado" layoutX="1027.0" layoutY="404.0" text="00">
+      <Label fx:id="acumulado" layoutX="1009.0" layoutY="118.0" text="00">
          <font>
             <Font size="43.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="areaPuntuaciones" layoutX="742.0" layoutY="182.0" prefHeight="515.0" prefWidth="447.0">
+         <font>
+            <Font name="Consolas" size="14.0" />
+         </font></TextArea>
+      <Label layoutX="776.0" layoutY="-6.0" text="Isla Calavera">
+         <font>
+            <Font name="Blackadder ITC" size="82.0" />
          </font>
       </Label>
    </children>
