@@ -150,12 +150,12 @@ public class IslaController {
 			}
 		  }
 		
+		evitarTiradaIndividual();
+		
 		//termina el juego por calaveras
 		if (puntos == -1) {
 			tirar.setDisable(true);
 		}
-		
-		evitarTiradaIndividual();
 	}
 	
 	@FXML
@@ -274,7 +274,7 @@ public class IslaController {
 		TextInputDialog mensajeFinal = new TextInputDialog();
 		mensajeFinal.setTitle("Guardar puntuación");
 		mensajeFinal.setHeaderText("¡Fin del juego! Has terminado las 10 rondas.");
-		mensajeFinal.setContentText("Introduce tu nombre para guardar tu puntuación.");
+		mensajeFinal.setContentText("Introduce un nombre para guardar la puntuación:");
 		Optional<String> nombre = mensajeFinal.showAndWait();
 		
 		if (nombre.isPresent()) {
@@ -312,13 +312,9 @@ public class IslaController {
 		conexion.close();
 	}
 	
-	public String formatearFecha(Timestamp fecha) {
-		
-		
+	public String formatearFecha(Timestamp fecha) {		
 		LocalDateTime objetoFecha = fecha.toLocalDateTime();
-		
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("hh:mm - dd/MM/yy");
-		
 		return objetoFecha.format(formato);
 	}
 	
@@ -327,7 +323,7 @@ public class IslaController {
 		
 		Connection conexion = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/BC7Yxrr0d0", "BC7Yxrr0d0", "HqgJ0PxyA1");
 		PreparedStatement sentencia = conexion.prepareStatement("INSERT INTO puntuaciones (nombre, puntuacion) VALUES(?, ?)");
-		sentencia.setString(1, nombre);
+		sentencia.setString(1, nombre.substring(0, 7));
 		sentencia.setInt(2, puntuacion);
 		sentencia.executeUpdate();
 		sentencia.close();
@@ -346,7 +342,7 @@ public class IslaController {
 	}
 	
 	private void efectosEstadoDado(ImageView img, CheckBox chck) {
-		ColorAdjust oscurecer = new ColorAdjust(0,0,-0.4,0);
+		ColorAdjust oscurecer = new ColorAdjust(0,0,-0.5,0);
 		ColorAdjust aclarar = new ColorAdjust(0,0,0,0);
 		
 		if (chck.isSelected()) {

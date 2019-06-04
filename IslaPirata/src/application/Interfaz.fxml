@@ -92,7 +92,7 @@
             <Font size="43.0" />
          </font>
       </Label>
-      <TextArea fx:id="areaPuntuaciones" layoutX="742.0" layoutY="182.0" prefHeight="515.0" prefWidth="447.0">
+      <TextArea fx:id="areaPuntuaciones" editable="false" layoutX="742.0" layoutY="182.0" prefHeight="515.0" prefWidth="447.0">
          <font>
             <Font name="Consolas" size="14.0" />
          </font></TextArea>
