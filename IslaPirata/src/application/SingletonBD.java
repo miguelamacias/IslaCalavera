@@ -99,10 +99,14 @@ public class SingletonBD {
 		PreparedStatement sentencia = null;
 		
 		try {
-			
+			//TODO la hora es incorrecta, hay que ver que es lo que pasa
 			conexion = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/BC7Yxrr0d0", "BC7Yxrr0d0", "HqgJ0PxyA1");
 			sentencia = conexion.prepareStatement("INSERT INTO puntuaciones (nombre, puntuacion) VALUES(?, ?)");
-			sentencia.setString(1, nombre.substring(0, 7));
+			if (nombre.length() > 7) {
+				sentencia.setString(1, nombre.substring(0, 7));
+			} else {
+				sentencia.setString(1, nombre);
+			}
 			sentencia.setInt(2, puntuacion);
 			sentencia.executeUpdate();
 			sentencia.close();
