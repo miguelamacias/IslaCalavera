@@ -13,6 +13,7 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+
 //TODO refactorizar la clase completa. Es un desastre de código
 public class IslaController {
 	//Variables de instancia

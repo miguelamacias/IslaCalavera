@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 /**
  * Clase que permite la comunicacion de la aplicacion con la base de datos.
@@ -44,7 +46,7 @@ public class SingletonBD {
 	 * @return <code>String</code> Puntuaciones almacenadas formateadas como una tabla.
 	 */
 	public String getPuntuaciones() {
-		StringBuilder puntuaciones = new StringBuilder("Nombre \t\t Puntuacion \t\t Hora \n\n");
+		StringBuilder puntuaciones = new StringBuilder("Nombre \t\t Puntuacion \t\t\t Fecha \n\n");
 		
 		Connection conexion = null;
 		Statement sentencia = null;
@@ -136,9 +138,10 @@ public class SingletonBD {
 	 * @param fecha Timestamp con una determinada fecha y hora.
 	 * @return <code>String</code> La fecha en formato texto.
 	 */
+	//TODO arreglar la hora
 	public String formatearFecha(Timestamp fecha) {		
 		LocalDateTime objetoFecha = fecha.toLocalDateTime();
-		DateTimeFormatter formato = DateTimeFormatter.ofPattern("hh:mm - dd/MM/yy");
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm - dd/MM/yy");
 		return objetoFecha.format(formato);
 	}	
 }
