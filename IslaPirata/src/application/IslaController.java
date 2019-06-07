@@ -26,7 +26,7 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-
+//TODO refactorizar la clase completa. Es un desastre de código
 public class IslaController {
 	//Variables de instancia
 	Dado[] dados;
@@ -118,7 +118,7 @@ public class IslaController {
 		try {
 			mostrarPuntuaciones();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			// TODO cambiar el control de excepciones de sitio, añadirlo al singleton cuando esté implementado
 			e.printStackTrace();
 		}
 		
@@ -289,7 +289,7 @@ public class IslaController {
 		
 		
 	}
-	
+	//TODO implementar singleton para la base de datos-
 	public void mostrarPuntuaciones() throws Exception {
 		Class.forName("com.mysql.jdbc.Driver");
 		
@@ -317,7 +317,7 @@ public class IslaController {
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("hh:mm - dd/MM/yy");
 		return objetoFecha.format(formato);
 	}
-	
+	//TODO meter base de datos en el singleton
 	public void guardarPuntuacionBD(String nombre, int puntuacion) throws Exception {
 		Class.forName("com.mysql.jdbc.Driver");
 		
