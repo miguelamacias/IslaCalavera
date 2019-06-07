@@ -53,7 +53,6 @@ public class SingletonBD {
 		ResultSet resultado = null;
 		
 		try {
-			//TODO usar un archivo properties para ocultar los datos de conexion
 			conexion = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/BC7Yxrr0d0", "BC7Yxrr0d0", "HqgJ0PxyA1");
 			sentencia = conexion.createStatement();
 			resultado = sentencia.executeQuery("SELECT nombre, puntuacion, fecha FROM puntuaciones ORDER BY puntuacion DESC");
@@ -101,7 +100,6 @@ public class SingletonBD {
 		PreparedStatement sentencia = null;
 		
 		try {
-			//TODO la hora es incorrecta, hay que ver que es lo que pasa
 			conexion = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/BC7Yxrr0d0", "BC7Yxrr0d0", "HqgJ0PxyA1");
 			sentencia = conexion.prepareStatement("INSERT INTO puntuaciones (nombre, puntuacion) VALUES(?, ?)");
 			if (nombre.length() > 7) {
