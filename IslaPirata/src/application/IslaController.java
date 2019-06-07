@@ -36,6 +36,7 @@ public class IslaController {
 	CheckBox[] checkboxes;
 	boolean[] dadosBloqueados;
 	int ronda;
+	SingletonBD baseDatos;
 	
 	//Declaración de variables para el SceneBuilder
 	@FXML
@@ -112,15 +113,12 @@ public class IslaController {
 		imagenes = new ImageView[9];
 		checkboxes = new CheckBox[9];
 		dadosBloqueados = new boolean[9];
+		baseDatos = SingletonBD.getInstance();
 		ronda = 1;
 		acumulado.setText("0");
 		inicializarArrays();
-		try {
-			mostrarPuntuaciones();
-		} catch (Exception e) {
-			// TODO cambiar el control de excepciones de sitio, añadirlo al singleton cuando esté implementado
-			e.printStackTrace();
-		}
+		
+		areaPuntuaciones.setText(baseDatos.getPuntuaciones());
 		
 		//Crea la array de los 8 dados del juego
 		for (int i = 1; i < dados.length; i++) {
@@ -278,58 +276,9 @@ public class IslaController {
 		Optional<String> nombre = mensajeFinal.showAndWait();
 		
 		if (nombre.isPresent()) {
-			try {
-				guardarPuntuacionBD(nombre.get(), acumuladoInt);
-			} catch (Exception e) {
-				//Error al guardar la puntuacion
-				e.printStackTrace();
-			}
+			baseDatos.guardarPuntuacionBD(nombre.get(), acumuladoInt);
 		}
-		
-		
-		
-	}
-	//TODO implementar singleton para la base de datos-
-	public void mostrarPuntuaciones() throws Exception {
-		Class.forName("com.mysql.jdbc.Driver");
-		
-		Connection conexion = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/BC7Yxrr0d0", "BC7Yxrr0d0", "HqgJ0PxyA1");
-		Statement sentencia = conexion.createStatement();
-		ResultSet resultado = sentencia.executeQuery("SELECT nombre, puntuacion, fecha FROM puntuaciones ORDER BY fecha");
-		areaPuntuaciones.setText("Nombre \t\t Puntuacion \t\t Hora \n\n");
-		while (resultado.next()) {
-			areaPuntuaciones.appendText(resultado.getString(1));
-			areaPuntuaciones.appendText("\t\t");
-			areaPuntuaciones.appendText(resultado.getString(2));
-			areaPuntuaciones.appendText("\t\t");
-			Timestamp fecha = resultado.getTimestamp(3);
-			areaPuntuaciones.appendText(formatearFecha(fecha));
-			areaPuntuaciones.appendText("\n");
-			
-		}
-		sentencia.close();
-		resultado.close();
-		conexion.close();
-	}
-	
-	public String formatearFecha(Timestamp fecha) {		
-		LocalDateTime objetoFecha = fecha.toLocalDateTime();
-		DateTimeFormatter formato = DateTimeFormatter.ofPattern("hh:mm - dd/MM/yy");
-		return objetoFecha.format(formato);
-	}
-	//TODO meter base de datos en el singleton
-	public void guardarPuntuacionBD(String nombre, int puntuacion) throws Exception {
-		Class.forName("com.mysql.jdbc.Driver");
-		
-		Connection conexion = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/BC7Yxrr0d0", "BC7Yxrr0d0", "HqgJ0PxyA1");
-		PreparedStatement sentencia = conexion.prepareStatement("INSERT INTO puntuaciones (nombre, puntuacion) VALUES(?, ?)");
-		sentencia.setString(1, nombre.substring(0, 7));
-		sentencia.setInt(2, puntuacion);
-		sentencia.executeUpdate();
-		sentencia.close();
-		conexion.close();
-		
-		mostrarPuntuaciones();
+		areaPuntuaciones.setText(baseDatos.getPuntuaciones());
 		
 	}
 	
@@ -351,6 +300,7 @@ public class IslaController {
 			img.setEffect(oscurecer);
 		}
 	}
+	
 	private void seleccionarDadosMarcados() {
 		dadosMarcados[1] = chkDado1.isSelected();
 		dadosMarcados[2] = chkDado2.isSelected();
