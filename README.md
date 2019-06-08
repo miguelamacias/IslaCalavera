@@ -1,5 +1,5 @@
 # Isla Calavera
-![Screenshot of the game](/screen.png)
+![Screenshot of the game](/screenShot.png)
 
 Aplicación basada en el juego de mesa Isla Calavera.
 El objetivo es conseguir la mayor puntuación al final de las 10 rondas. Se suma puntos consiguiendo tres o más dados iguales o acumulando monedas y diamantes. Tres calaveras en un ronda te hacen perder. Puedes lanzar los dados tantas veces como quieras mientras lances al menos 2 y no haya aun 3 calaveras. Pulsa sobre los dados para guardarlos o volver a tirarlos.
