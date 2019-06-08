@@ -10,4 +10,5 @@ Dice game inspired in pirates. The game's goal is to get the maximum amount of p
 Three Skulls make you loose that round. Groups of three or more dice, coins and diamonds give points. You can roll the dice as much as you want as long as you roll at least 2 of them and there's less than 3 skulls on the board game. The game is only avalible in Spanish currently, but it's pretty simple to play.
 
 Descarga la última versión: https://github.com/miguelamacias/IslaCalavera/raw/master/IslaCalavera.jar
+
 Versión actual / Current version: 1.0 RC1
