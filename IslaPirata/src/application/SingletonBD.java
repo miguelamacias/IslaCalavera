@@ -31,8 +31,8 @@ public class SingletonBD {
 
 	}
 	/**
-	 * Método que devulve la instancia única del objeto para comunicarse con
-	 * la BD.
+	 * Método que devuelve la instancia única del objeto para
+	 * comunicarse con la BD.
 	 * @return <code>SingletonBD</code> Instancia de la clase.
 	 */
 	public static SingletonBD getInstance() {
@@ -44,14 +44,14 @@ public class SingletonBD {
 	 * @return <code>String</code> Puntuaciones almacenadas formateadas como una tabla.
 	 */
 	public String getPuntuaciones() {
-		StringBuilder puntuaciones = new StringBuilder("Nombre \t\t Puntuacion \t\t\t Fecha \n\n");
+		StringBuilder puntuaciones = new StringBuilder("Nombre \t\t Puntuacion \t\t Hora\n\n");
 		
 		Connection conexion = null;
 		Statement sentencia = null;
 		ResultSet resultado = null;
 		
 		try {
-			conexion = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/BC7Yxrr0d0", "BC7Yxrr0d0", "HqgJ0PxyA1");
+			conexion = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/BC7Yxrr0d0?useSSL=false", "BC7Yxrr0d0", "HqgJ0PxyA1");
 			sentencia = conexion.createStatement();
 			resultado = sentencia.executeQuery("SELECT nombre, puntuacion, fecha FROM puntuaciones ORDER BY puntuacion DESC");
 			
@@ -134,9 +134,8 @@ public class SingletonBD {
 	 * @param fecha Timestamp con una determinada fecha y hora.
 	 * @return <code>String</code> La fecha en formato texto.
 	 */
-	//TODO arreglar la hora
 	public String formatearFecha(Timestamp fecha) {		
-		LocalDateTime objetoFecha = fecha.toLocalDateTime();
+		LocalDateTime objetoFecha = fecha.toLocalDateTime().plusHours(2);
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm - dd/MM/yy");
 		return objetoFecha.format(formato);
 	}	

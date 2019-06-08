@@ -17,14 +17,14 @@ import javafx.scene.input.MouseEvent;
 //TODO refactorizar la clase completa. Es un desastre de código
 public class IslaController {
 	//Variables de instancia
-	Dado[] dados;
-	Tirada tirada;
-	ImageView[] imagenes;
-	Boolean[] dadosMarcados;
-	CheckBox[] checkboxes;
-	boolean[] dadosBloqueados;
-	int ronda;
-	SingletonBD baseDatos;
+	private Dado[] dados;
+	private Tirada tirada;
+	private ImageView[] imagenes;
+	private Boolean[] dadosMarcados;
+	private CheckBox[] checkboxes;
+	private boolean[] dadosBloqueados;
+	private int ronda;
+	private SingletonBD baseDatos;
 	
 	//Declaración de variables para el SceneBuilder
 	@FXML
@@ -121,7 +121,12 @@ public class IslaController {
 		
 		//Realiza una tirada y calcula los puntos obtenidos
 		int puntos = tirada.calcularPuntuacion(tirada.obtenerTirada(dados, dadosMarcados));
-		resultado.setText(String.valueOf(puntos));
+		
+		if (puntos > 0) {
+			resultado.setText(String.valueOf(puntos));
+		} else {
+			resultado.setText("0");
+		}
 		
 		//Establece las imágenes correspondientes de cada dado.
 		for (int i = 1; i < dados.length; i++) {
@@ -158,7 +163,7 @@ public class IslaController {
 	@FXML
 	private void seleccionarDados(MouseEvent event) {
 		ImageView origen = (ImageView) event.getSource();
-		
+
 		switch (origen.getId()) {
 		case "img1":
 			cambiarEstadoDado(chkDado1);
@@ -224,12 +229,11 @@ public class IslaController {
 	
 	@FXML
 	private void nuevaRonda(ActionEvent event) {
-		//Si la puntuación no es -1 (calaveras) se suma al total
-		if (Integer.parseInt(resultado.getText()) != -1) {
-			int acumuladoInt = Integer.parseInt(acumulado.getText());
-			acumuladoInt += Integer.parseInt(resultado.getText());
-			acumulado.setText(String.valueOf(acumuladoInt));
-		}
+		//se suma la puntuación de la ronda al total
+		int acumuladoInt = Integer.parseInt(acumulado.getText());
+		acumuladoInt += Integer.parseInt(resultado.getText());
+		acumulado.setText(String.valueOf(acumuladoInt));
+
 		
 		if (ronda < 10) {
 			//Cambia el número de ronda
@@ -243,7 +247,7 @@ public class IslaController {
 			//Desactiva los efectos de los dados y reinicia la imagen
 			for (int i = 1; i < imagenes.length; i++) {
 				imagenes[i].setEffect(new ColorAdjust(0, 0, 0, 0));
-				imagenes[i].setImage(new Image("/res/1Calavera.png"));
+				imagenes[i].setImage(new Image("res/dado_vacio.jpg"));
 				checkboxes[i].setSelected(true);
 			}
 		} else {

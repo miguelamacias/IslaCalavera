@@ -17,7 +17,7 @@ public class Dado {
 	private String[] caras;
 	
 	/**
-	 * Cnstructor sin parámetros que inicializa las variables
+	 * Constructor sin parámetros que inicializa las variables
 	 * necesarias para el funcionamiento del dado.
 	 */
 	public Dado() {
