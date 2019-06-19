@@ -98,7 +98,7 @@ public class SingletonBD {
 		PreparedStatement sentencia = null;
 		
 		try {
-			conexion = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/BC7Yxrr0d0", "BC7Yxrr0d0", "HqgJ0PxyA1");
+			conexion = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/BC7Yxrr0d0?useSSL=false", "BC7Yxrr0d0", "HqgJ0PxyA1");
 			sentencia = conexion.prepareStatement("INSERT INTO puntuaciones (nombre, puntuacion) VALUES(?, ?)");
 			if (nombre.length() > 7) {
 				sentencia.setString(1, nombre.substring(0, 7));
