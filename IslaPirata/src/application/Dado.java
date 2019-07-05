@@ -1,6 +1,10 @@
 package application;
 
 import java.security.SecureRandom;
+
+import javafx.scene.control.CheckBox;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.ImageView;
 /**Clase que simula un dado de 6 caras del juego de mesa
  * original Isla Calavera.
  * 
@@ -59,6 +63,26 @@ public class Dado {
 	 */
 	public int getValorCara() {
 		return valorCara;
+	}
+	
+	//Métodos estáticos auxiliares para trabajar con el dado desde la interfaz
+	public static void cambiarEstadoDado(CheckBox chck) {
+		if (chck.isSelected()) {
+			chck.setSelected(false);
+		} else {
+			chck.setSelected(true);
+		}
+	}
+	
+	public static void efectosEstadoDado(ImageView img, CheckBox chck) {
+		ColorAdjust oscurecer = new ColorAdjust(0,0,-0.5,0);
+		ColorAdjust aclarar = new ColorAdjust(0,0,0,0);
+		
+		if (chck.isSelected()) {
+			img.setEffect(aclarar);
+		} else {
+			img.setEffect(oscurecer);
+		}
 	}
 	
 }

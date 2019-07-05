@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
@@ -70,7 +71,11 @@
       <CheckBox fx:id="chkDado7" disable="true" layoutX="963.0" layoutY="75.0" mnemonicParsing="false" selected="true" text="CheckBox" />
       <CheckBox fx:id="chkDado4" disable="true" layoutX="1066.0" layoutY="41.0" mnemonicParsing="false" selected="true" text="CheckBox" />
       <CheckBox fx:id="chkDado8" disable="true" layoutX="1066.0" layoutY="75.0" mnemonicParsing="false" selected="true" text="CheckBox" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="85.0" layoutX="742.0" layoutY="33.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="447.0" />
+      <ImageView fitHeight="85.0" fitWidth="447.0" layoutX="742.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../res/madera.png" />
+         </image>
+      </ImageView>
       <Label layoutX="48.0" layoutY="371.0" text="Ronda nº:">
          <font>
             <Font size="34.0" />
@@ -96,7 +101,7 @@
          <font>
             <Font name="Consolas" size="14.0" />
          </font></TextArea>
-      <Label layoutX="776.0" layoutY="-6.0" text="Isla Calavera">
+      <Label layoutX="776.0" layoutY="-6.0" text="Isla Calavera" textFill="WHITE">
          <font>
             <Font name="Blackadder ITC" size="82.0" />
          </font>

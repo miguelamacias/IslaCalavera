@@ -166,36 +166,36 @@ public class IslaController {
 
 		switch (origen.getId()) {
 		case "img1":
-			cambiarEstadoDado(chkDado1);
-			efectosEstadoDado(img1, chkDado1);
+			Dado.cambiarEstadoDado(chkDado1);
+			Dado.efectosEstadoDado(img1, chkDado1);
 			break;
 		case "img2":
-			cambiarEstadoDado(chkDado2);
-			efectosEstadoDado(img2, chkDado2);
+			Dado.cambiarEstadoDado(chkDado2);
+			Dado.efectosEstadoDado(img2, chkDado2);
 			break;
 		case "img3":
-			cambiarEstadoDado(chkDado3);
-			efectosEstadoDado(img3, chkDado3);
+			Dado.cambiarEstadoDado(chkDado3);
+			Dado.efectosEstadoDado(img3, chkDado3);
 			break;
 		case "img4":
-			cambiarEstadoDado(chkDado4);
-			efectosEstadoDado(img4, chkDado4);
+			Dado.cambiarEstadoDado(chkDado4);
+			Dado.efectosEstadoDado(img4, chkDado4);
 			break;
 		case "img5":
-			cambiarEstadoDado(chkDado5);
-			efectosEstadoDado(img5, chkDado5);
+			Dado.cambiarEstadoDado(chkDado5);
+			Dado.efectosEstadoDado(img5, chkDado5);
 			break;
 		case "img6":
-			cambiarEstadoDado(chkDado6);
-			efectosEstadoDado(img6, chkDado6);
+			Dado.cambiarEstadoDado(chkDado6);
+			Dado.efectosEstadoDado(img6, chkDado6);
 			break;
 		case "img7":
-			cambiarEstadoDado(chkDado7);
-			efectosEstadoDado(img7, chkDado7);
+			Dado.cambiarEstadoDado(chkDado7);
+			Dado.efectosEstadoDado(img7, chkDado7);
 			break;
 		case "img8":
-			cambiarEstadoDado(chkDado8);
-			efectosEstadoDado(img8, chkDado8);
+			Dado.cambiarEstadoDado(chkDado8);
+			Dado.efectosEstadoDado(img8, chkDado8);
 			break;
 
 		default:
@@ -274,24 +274,7 @@ public class IslaController {
 		
 	}
 	
-	private void cambiarEstadoDado(CheckBox chck) {
-		if (chck.isSelected()) {
-			chck.setSelected(false);
-		} else {
-			chck.setSelected(true);
-		}
-	}
 	
-	private void efectosEstadoDado(ImageView img, CheckBox chck) {
-		ColorAdjust oscurecer = new ColorAdjust(0,0,-0.5,0);
-		ColorAdjust aclarar = new ColorAdjust(0,0,0,0);
-		
-		if (chck.isSelected()) {
-			img.setEffect(aclarar);
-		} else {
-			img.setEffect(oscurecer);
-		}
-	}
 	
 	private void seleccionarDadosMarcados() {
 		dadosMarcados[1] = chkDado1.isSelected();
