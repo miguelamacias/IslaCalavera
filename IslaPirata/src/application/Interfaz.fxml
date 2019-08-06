@@ -86,7 +86,7 @@
             <Font size="34.0" />
          </font>
       </Label>
-      <Button fx:id="nuevaRonda" layoutX="48.0" layoutY="584.0" mnemonicParsing="false" onAction="#nuevaRonda" text="Guardar puntuación / Siguiente Ronda" />
+      <Button fx:id="nuevaRonda" layoutX="48.0" layoutY="584.0" mnemonicParsing="false" onAction="#nuevaRonda" text="Guardar puntuación&#10;Siguiente Ronda" />
       <Label layoutX="742.0" layoutY="125.0" text="Total acumulado:">
          <font>
             <Font size="34.0" />
@@ -106,15 +106,20 @@
             <Font name="Blackadder ITC" size="82.0" />
          </font>
       </Label>
-      <ImageView fitHeight="326.0" fitWidth="204.0" layoutX="514.0" layoutY="372.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="299.0" fitWidth="186.0" layoutX="531.0" layoutY="399.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/ayuda.png" />
          </image>
       </ImageView>
-      <Label fx:id="cartaLabel" layoutX="188.0" layoutY="658.0" text="Label">
+      <Label fx:id="cartaLabel" layoutX="395.0" layoutY="698.0" text="Label">
          <font>
-            <Font size="30.0" />
+            <Font size="24.0" />
          </font>
       </Label>
+      <ImageView fx:id="cartaImageView" fitHeight="299.0" fitWidth="186.0" layoutX="334.0" layoutY="399.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../res/ayuda.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

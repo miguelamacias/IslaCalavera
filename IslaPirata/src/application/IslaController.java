@@ -98,6 +98,9 @@ public class IslaController {
 	private Label cartaLabel;
 	
 	@FXML
+	private ImageView cartaImageView;
+	
+	@FXML
 	void initialize() {
 		//Inicializa las variables de instancia.
 		dados = new Dado[9];
@@ -113,16 +116,16 @@ public class IslaController {
 		
 		//Saca una carta y la muestra
 		cartaLabel.setText(carta.sacarCarta());
+		String rutaImagen = String.format("/res/CARTA_%s.png", carta.toString());
+		Image imagen = new Image(rutaImagen);
+		cartaImageView.setImage(imagen);
 		
 		areaPuntuaciones.setText(baseDatos.getPuntuaciones());
 		
 		//Crea la array de los 8 dados del juego
 		for (int i = 1; i < dados.length; i++) {
 			dados[i] = new Dado();
-		}	
-		
-		//Crea la carta
-		carta = new Carta();
+		}
 	}
 	
 	@FXML
@@ -261,8 +264,12 @@ public class IslaController {
 				imagenes[i].setImage(new Image("res/dado_vacio.jpg"));
 				checkboxes[i].setSelected(true);
 			}
-			//Se saca una nueva carta
+			
+			//Saca una nueva carta y la muestra
 			cartaLabel.setText(carta.sacarCarta());
+			String rutaImagen = String.format("/res/CARTA_%s.png", carta.toString());
+			Image imagen = new Image(rutaImagen);
+			cartaImageView.setImage(imagen);
 		} else {
 			terminarJuego();
 		}
