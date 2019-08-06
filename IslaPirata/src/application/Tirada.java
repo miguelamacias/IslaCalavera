@@ -33,8 +33,11 @@ public class Tirada {
 			carasObtenidas[1]++;
 			break;
 		case "DOBLE_CALAVERA":
-			carasObtenidas[2] += 2;
+			carasObtenidas[1] += 2;
 			break;
+		case "MONO_LORO":
+			carasObtenidas[4] += carasObtenidas[3];
+			carasObtenidas[3] = 0;
 		default:
 			break;
 		}
