@@ -17,17 +17,35 @@ public class Tirada {
 		return resultado;
 	}
 	
-	public int calcularPuntuacion(int[] puntuaciones) {
+	public int calcularPuntuacion(int[] carasObtenidas, String carta) {
 		//Reinicia la puntuación
 		int puntuacion = 0;
 		
+		//Evalúa la carta y hace el efecto de la misma si es un efecto "de dado"
+		switch (carta) {
+		case "DIAMANTE":
+			carasObtenidas[2]++;
+			break;
+		case "ORO":
+			carasObtenidas[5]++;
+			break;
+		case "CALAVERA":
+			carasObtenidas[1]++;
+			break;
+		case "DOBLE_CALAVERA":
+			carasObtenidas[2] += 2;
+			break;
+		default:
+			break;
+		}
+		
 		//100 puntos por cada oro y diamante obtenidos
-		puntuacion += puntuaciones[2] * 100;
-		puntuacion += puntuaciones[5] * 100;
+		puntuacion += carasObtenidas[2] * 100;
+		puntuacion += carasObtenidas[5] * 100;
 		
 		//Suma las puntuaciones por grupos
-		for (int i = 1; i < puntuaciones.length; i++) {
-			switch (puntuaciones[i]) {
+		for (int i = 1; i < carasObtenidas.length; i++) {
+			switch (carasObtenidas[i]) {
 			case 3:
 				puntuacion += 100;
 				break;
@@ -49,11 +67,16 @@ public class Tirada {
 				break;
 			}
 		}
-		if (puntuaciones[1] >= 3) {
+		//Si hay 3 o más calaveras devuelve -1 (sin puntuación)
+		if (carasObtenidas[1] >= 3) {
 			puntuacion = -1;
 		}
+		//Si la carta es un pirata se dobla la puntuación
+		if (carta.equals("PIRATA")) {
+			puntuacion *= 2;
+		}
+		
+		
 		return puntuacion;
 	}
-	
-	
 }

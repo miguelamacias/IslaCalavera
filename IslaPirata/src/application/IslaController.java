@@ -25,6 +25,7 @@ public class IslaController {
 	private boolean[] dadosBloqueados;
 	private int ronda;
 	private SingletonBD baseDatos;
+	private Carta carta;
 	
 	//Declaración de variables para el SceneBuilder
 	@FXML
@@ -94,6 +95,9 @@ public class IslaController {
 	private TextArea areaPuntuaciones;
 	
 	@FXML
+	private Label cartaLabel;
+	
+	@FXML
 	void initialize() {
 		//Inicializa las variables de instancia.
 		dados = new Dado[9];
@@ -105,6 +109,10 @@ public class IslaController {
 		ronda = 1;
 		acumulado.setText("0");
 		inicializarArrays();
+		carta = new Carta();
+		
+		//Saca una carta y la muestra
+		cartaLabel.setText(carta.sacarCarta());
 		
 		areaPuntuaciones.setText(baseDatos.getPuntuaciones());
 		
@@ -112,6 +120,9 @@ public class IslaController {
 		for (int i = 1; i < dados.length; i++) {
 			dados[i] = new Dado();
 		}	
+		
+		//Crea la carta
+		carta = new Carta();
 	}
 	
 	@FXML
@@ -120,7 +131,7 @@ public class IslaController {
 		controlCalaveras();
 		
 		//Realiza una tirada y calcula los puntos obtenidos
-		int puntos = tirada.calcularPuntuacion(tirada.obtenerTirada(dados, dadosMarcados));
+		int puntos = tirada.calcularPuntuacion(tirada.obtenerTirada(dados, dadosMarcados), carta.toString());
 		
 		if (puntos > 0) {
 			resultado.setText(String.valueOf(puntos));
@@ -233,7 +244,7 @@ public class IslaController {
 		int acumuladoInt = Integer.parseInt(acumulado.getText());
 		acumuladoInt += Integer.parseInt(resultado.getText());
 		acumulado.setText(String.valueOf(acumuladoInt));
-
+		
 		
 		if (ronda < 10) {
 			//Cambia el número de ronda
@@ -250,6 +261,8 @@ public class IslaController {
 				imagenes[i].setImage(new Image("res/dado_vacio.jpg"));
 				checkboxes[i].setSelected(true);
 			}
+			//Se saca una nueva carta
+			cartaLabel.setText(carta.sacarCarta());
 		} else {
 			terminarJuego();
 		}
