@@ -115,7 +115,7 @@ public class IslaController {
 		carta = new Carta();
 		
 		//Saca una carta y la muestra
-		cartaLabel.setText(carta.sacarCarta());
+		cartaLabel.setText(String.format("/res/CARTA_%s.png", carta.sacarCarta()));
 		String rutaImagen = String.format("/res/CARTA_%s.png", carta.toString());
 		Image imagen = new Image(rutaImagen);
 		cartaImageView.setImage(imagen);
@@ -136,9 +136,11 @@ public class IslaController {
 		//Realiza una tirada y calcula los puntos obtenidos
 		int puntos = tirada.calcularPuntuacion(tirada.obtenerTirada(dados, dadosMarcados), carta.toString());
 		
-		if (puntos > 0) {
-			resultado.setText(String.valueOf(puntos));
-		} else {
+		if (puntos > 0) { //Si es una puntuación normal
+			resultado.setText(String.valueOf(puntos)); 
+		} else if (puntos < 0 && carta.toString().equals("COFRE")) { //Si salen 3 calaveras pero tiene un cofre que guarda la puntuación
+			resultado.setText(String.valueOf(tirada.getPuntuacion()));
+		} else { //Si salen 3 calaveras y no tiene cofre.
 			resultado.setText("0");
 		}
 		
@@ -266,7 +268,7 @@ public class IslaController {
 			}
 			
 			//Saca una nueva carta y la muestra
-			cartaLabel.setText(carta.sacarCarta());
+			cartaLabel.setText(String.format("/res/CARTA_%s.png", carta.sacarCarta()));
 			String rutaImagen = String.format("/res/CARTA_%s.png", carta.toString());
 			Image imagen = new Image(rutaImagen);
 			cartaImageView.setImage(imagen);
