@@ -2,6 +2,7 @@ package application;
 
 public class Tirada {
 		
+	private int puntuacion;
 	public int[] obtenerTirada(Dado[] dados, Boolean[] dadosMarcados) {
 		int[] resultado = new int[7];
 		
@@ -19,7 +20,7 @@ public class Tirada {
 	
 	public int calcularPuntuacion(int[] carasObtenidas, String carta) {
 		//Reinicia la puntuación
-		int puntuacion = 0;
+		puntuacion = 0;
 		
 		//Evalúa la carta y hace el efecto de la misma si es un efecto "de dado"
 		switch (carta) {
@@ -71,15 +72,18 @@ public class Tirada {
 			}
 		}
 		//Si hay 3 o más calaveras devuelve -1 (sin puntuación)
-		if (carasObtenidas[1] >= 3) {
-			puntuacion = -1;
+		if (carasObtenidas[1] >= 3 && !carta.equals("COFRE")) {
+			return -1;
 		}
 		//Si la carta es un pirata se dobla la puntuación
 		if (carta.equals("PIRATA")) {
 			puntuacion *= 2;
-		}
+		}		
 		
-		
+		return puntuacion;
+	}
+	
+	public int getPuntuacion() {
 		return puntuacion;
 	}
 }
