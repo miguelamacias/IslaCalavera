@@ -44,26 +44,22 @@ public class SingletonBD {
 	 * @return <code>String</code> Puntuaciones almacenadas formateadas como una tabla.
 	 */
 	public String getPuntuaciones() {
-		StringBuilder puntuaciones = new StringBuilder("Nombre \t\t Puntuacion \t\t Hora\n\n");
+		StringBuilder puntuaciones = new StringBuilder(String.format("%-23s%-12s%12s%n", "Nombre", "Puntuación", "Fecha"));
+		puntuaciones.append("________________________________________________________\n");
 		
 		Connection conexion = null;
 		Statement sentencia = null;
 		ResultSet resultado = null;
-		
+
 		try {
 			conexion = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/BC7Yxrr0d0?useSSL=false", "BC7Yxrr0d0", "HqgJ0PxyA1");
 			sentencia = conexion.createStatement();
 			resultado = sentencia.executeQuery("SELECT nombre, puntuacion, fecha FROM puntuaciones ORDER BY puntuacion DESC");
 			
+			
 			while (resultado.next()) {
-				puntuaciones.append(resultado.getString(1));
-				puntuaciones.append("\t\t");
-				puntuaciones.append(resultado.getString(2));
-				puntuaciones.append("\t\t");
 				Timestamp fecha = resultado.getTimestamp(3);
-				puntuaciones.append(formatearFecha(fecha));
-				puntuaciones.append("\n");
-				
+				puntuaciones.append(String.format("%-25s%-12s%-16s%n", resultado.getString(1), resultado.getString(2), formatearFecha(fecha)));
 			}
 			
 		} catch (SQLException e) {
@@ -100,8 +96,8 @@ public class SingletonBD {
 		try {
 			conexion = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/BC7Yxrr0d0?useSSL=false", "BC7Yxrr0d0", "HqgJ0PxyA1");
 			sentencia = conexion.prepareStatement("INSERT INTO puntuaciones (nombre, puntuacion) VALUES(?, ?)");
-			if (nombre.length() > 7) {
-				sentencia.setString(1, nombre.substring(0, 7));
+			if (nombre.length() > 23) {
+				sentencia.setString(1, nombre.substring(0, 23));
 			} else {
 				sentencia.setString(1, nombre);
 			}
