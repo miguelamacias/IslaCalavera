@@ -111,11 +111,6 @@
             <Image url="@../res/ayuda.png" />
          </image>
       </ImageView>
-      <Label fx:id="cartaLabel" layoutX="395.0" layoutY="698.0" text="Label">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
       <ImageView fx:id="cartaImageView" fitHeight="299.0" fitWidth="186.0" layoutX="334.0" layoutY="399.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/ayuda.png" />
