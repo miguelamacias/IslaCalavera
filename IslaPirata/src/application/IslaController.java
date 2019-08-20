@@ -94,8 +94,6 @@ public class IslaController {
 	@FXML
 	private TextArea areaPuntuaciones;
 	
-	@FXML
-	private Label cartaLabel;
 	
 	@FXML
 	private ImageView cartaImageView;
@@ -115,8 +113,7 @@ public class IslaController {
 		carta = new Carta();
 		
 		//Saca una carta y la muestra
-		cartaLabel.setText(String.format("/res/CARTA_%s.png", carta.sacarCarta()));
-		String rutaImagen = String.format("/res/CARTA_%s.png", carta.toString());
+		String rutaImagen = String.format("/res/CARTA_%s.png", carta.sacarCarta());
 		Image imagen = new Image(rutaImagen);
 		cartaImageView.setImage(imagen);
 		
@@ -268,8 +265,7 @@ public class IslaController {
 			}
 			
 			//Saca una nueva carta y la muestra
-			cartaLabel.setText(String.format("/res/CARTA_%s.png", carta.sacarCarta()));
-			String rutaImagen = String.format("/res/CARTA_%s.png", carta.toString());
+			String rutaImagen = String.format("/res/CARTA_%s.png", carta.sacarCarta());
 			Image imagen = new Image(rutaImagen);
 			cartaImageView.setImage(imagen);
 		} else {
