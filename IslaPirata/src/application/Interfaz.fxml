@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.effect.*?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="742.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IslaController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="742.0" prefWidth="1233.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IslaController">
    <children>
       <Button fx:id="tirar" layoutX="48.0" layoutY="510.0" mnemonicParsing="false" onAction="#tirar" prefHeight="50.0" prefWidth="147.0" text="Tirar dados" />
       <ImageView fx:id="img6" fitHeight="150.0" fitWidth="150.0" layoutX="224.0" layoutY="202.0" onMouseClicked="#seleccionarDados" pickOnBounds="true" preserveRatio="true">
@@ -71,7 +72,7 @@
       <CheckBox fx:id="chkDado7" disable="true" layoutX="963.0" layoutY="75.0" mnemonicParsing="false" selected="true" text="CheckBox" />
       <CheckBox fx:id="chkDado4" disable="true" layoutX="1066.0" layoutY="41.0" mnemonicParsing="false" selected="true" text="CheckBox" />
       <CheckBox fx:id="chkDado8" disable="true" layoutX="1066.0" layoutY="75.0" mnemonicParsing="false" selected="true" text="CheckBox" />
-      <ImageView fitHeight="85.0" fitWidth="447.0" layoutX="742.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="102.0" fitWidth="463.0" layoutX="742.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/madera.png" />
          </image>
@@ -97,11 +98,7 @@
             <Font size="43.0" />
          </font>
       </Label>
-      <TextArea fx:id="areaPuntuaciones" editable="false" layoutX="742.0" layoutY="182.0" prefHeight="515.0" prefWidth="447.0">
-         <font>
-            <Font name="Consolas" size="14.0" />
-         </font></TextArea>
-      <Label layoutX="776.0" layoutY="-6.0" text="Isla Calavera" textFill="WHITE">
+      <Label layoutX="795.0" layoutY="-6.0" text="Isla Calavera" textFill="WHITE">
          <font>
             <Font name="Blackadder ITC" size="82.0" />
          </font>
@@ -116,5 +113,13 @@
             <Image url="@../res/ayuda.png" />
          </image>
       </ImageView>
+      <ScrollPane fx:id="scrollPuntuaciones" layoutX="742.0" layoutY="177.0" prefHeight="547.0" prefViewportHeight="545.0" prefViewportWidth="445.0" prefWidth="463.0" style="-fx-background-color: white;">
+         <content>
+            <TextFlow fx:id="areaPuntuaciones" layoutX="742.0" layoutY="177.0" prefHeight="545.0" prefWidth="461.0" style="-fx-background-color: white;">
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding></TextFlow>
+         </content>
+      </ScrollPane>
    </children>
 </Pane>

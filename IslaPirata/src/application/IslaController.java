@@ -7,13 +7,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 //TODO refactorizar la clase completa. Es un desastre de código
 public class IslaController {
@@ -93,8 +98,10 @@ public class IslaController {
 	private Label acumulado;
 	
 	@FXML
-	private TextArea areaPuntuaciones;
+	private TextFlow areaPuntuaciones;
 	
+	@FXML
+	private ScrollPane scrollPuntuaciones;
 	
 	@FXML
 	private ImageView cartaImageView;
@@ -118,9 +125,12 @@ public class IslaController {
 		Image imagen = new Image(rutaImagen);
 		cartaImageView.setImage(imagen);
 		
-		Text cabeceraTabla = new Text(String.format("%-23s%-12s%12s%n", "Nombre", "Puntuación", "Fecha"));
-		
-		areaPuntuaciones.setText(baseDatos.getPuntuaciones());
+		//Carga y configura la tabla de puntuaciones
+		Text cabeceraTabla = new Text(String.format("%-16s%-19s%s", "Nombre", "Puntuación", "Fecha"));
+		cabeceraTabla.setId("cabeceratabla");
+		cabeceraTabla.setFont(Font.font("Consolas", FontWeight.BOLD, 20));
+		scrollPuntuaciones.setVbarPolicy(ScrollBarPolicy.NEVER);
+		areaPuntuaciones.getChildren().addAll(cabeceraTabla, baseDatos.getPuntuacionesText());
 		
 		//Crea la array de los 8 dados del juego
 		for (int i = 1; i < dados.length; i++) {
@@ -291,7 +301,8 @@ public class IslaController {
 		if (nombre.isPresent()) {
 			baseDatos.guardarPuntuacionBD(nombre.get(), acumuladoInt);
 		}
-		areaPuntuaciones.setText(baseDatos.getPuntuaciones());
+		//TODO cambiar esto:
+		//areaPuntuaciones.setText(baseDatos.getPuntuaciones());
 		
 	}
 	

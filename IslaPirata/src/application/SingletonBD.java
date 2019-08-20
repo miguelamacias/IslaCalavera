@@ -9,6 +9,9 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 /**
  * Clase que permite la comunicacion de la aplicacion con la base de datos.
  * Implementa el patrón Singleton para que solo exista un objeto con el
@@ -44,8 +47,7 @@ public class SingletonBD {
 	 * @return <code>String</code> Puntuaciones almacenadas formateadas como una tabla.
 	 */
 	public String getPuntuaciones() {
-		StringBuilder puntuaciones = new StringBuilder(String.format("%-23s%-12s%12s%n", "Nombre", "Puntuación", "Fecha"));
-		puntuaciones.append("_______________________________________________________\n");
+		StringBuilder puntuaciones = new StringBuilder("\n");
 		
 		Connection conexion = null;
 		Statement sentencia = null;
@@ -59,7 +61,7 @@ public class SingletonBD {
 			
 			while (resultado.next()) {
 				Timestamp fecha = resultado.getTimestamp(3);
-				puntuaciones.append(String.format("%-25s%-12s%-16s%n", resultado.getString(1), resultado.getString(2), formatearFecha(fecha)));
+				puntuaciones.append(String.format("%-25s%-11s%s%n", resultado.getString(1), resultado.getString(2), formatearFecha(fecha)));
 			}
 			
 		} catch (SQLException e) {
@@ -125,6 +127,18 @@ public class SingletonBD {
 			}	
 		}
 	}	
+	
+	/**
+	 * Método que devuelve la tabla de puntuaciones almacenada en la base de datos.
+	 * @return <code>Text</code> Puntuaciones almacenadas formateadas en un objeto Text de JavaFX
+	 * @see getPuntuaciones()
+	 */
+	public Text getPuntuacionesText() {
+		Text tabla = new Text(getPuntuaciones());
+		tabla.setFont(new Font("Consolas", 16));
+		return tabla;
+	}
+	
 	/**
 	 * Método que acepta un objeto Timestamp y devuelve la fecha y hora en formato texto.
 	 * @param fecha Timestamp con una determinada fecha y hora.
@@ -132,7 +146,7 @@ public class SingletonBD {
 	 */
 	public String formatearFecha(Timestamp fecha) {		
 		LocalDateTime objetoFecha = fecha.toLocalDateTime().plusHours(2);
-		DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm - dd/MM/yy");
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm dd/MM/yy");
 		return objetoFecha.format(formato);
 	}	
 }
