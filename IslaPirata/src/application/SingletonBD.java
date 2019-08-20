@@ -45,7 +45,7 @@ public class SingletonBD {
 	 */
 	public String getPuntuaciones() {
 		StringBuilder puntuaciones = new StringBuilder(String.format("%-23s%-12s%12s%n", "Nombre", "Puntuación", "Fecha"));
-		puntuaciones.append("_______________________________________________________\n");
+		puntuaciones.append("________________________________________________________\n");
 		
 		Connection conexion = null;
 		Statement sentencia = null;
