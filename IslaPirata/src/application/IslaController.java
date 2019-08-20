@@ -13,6 +13,7 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 //TODO refactorizar la clase completa. Es un desastre de código
 public class IslaController {
@@ -116,6 +117,8 @@ public class IslaController {
 		String rutaImagen = String.format("/res/CARTA_%s.png", carta.sacarCarta());
 		Image imagen = new Image(rutaImagen);
 		cartaImageView.setImage(imagen);
+		
+		Text cabeceraTabla = new Text(String.format("%-23s%-12s%12s%n", "Nombre", "Puntuación", "Fecha"));
 		
 		areaPuntuaciones.setText(baseDatos.getPuntuaciones());
 		
