@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="application.Main" project="IslaPirata" 
     file="/IslaPirata/src/application/Main.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="161" y="32"/>    
+    <position height="-1" width="-1" x="284" y="106"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="application.IslaController" project="IslaPirata" 
     file="/IslaPirata/src/application/IslaController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="654" y="308"/>    
+    <position height="772" width="299" x="382" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="application.Tirada" project="IslaPirata" 
     file="/IslaPirata/src/application/Tirada.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="212" y="211"/>    
+    <position height="-1" width="-1" x="850" y="108"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="application.SingletonBD" project="IslaPirata" 
     file="/IslaPirata/src/application/SingletonBD.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1036" y="156"/>    
+    <position height="-1" width="-1" x="933" y="362"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="application.Dado" project="IslaPirata" 
     file="/IslaPirata/src/application/Dado.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="975" y="388"/>    
+    <position height="-1" width="-1" x="873" y="616"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="application.test" project="IslaPirata" 
     file="/IslaPirata/src/application/test.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="931" y="4"/>    
+    <position height="-1" width="-1" x="121" y="99"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -87,7 +87,7 @@
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
     <operations public="true" package="true" protected="true" private="true" static="true"/>  
