@@ -18,6 +18,21 @@ public class Tirada {
 		return resultado;
 	}
 	
+	public int[] obtenerTiradaCofre(Dado[] dados, Boolean[] dadosMarcados) {
+		int[] resultado = new int[7];
+		
+		//Tira los dados
+		for (int i = 1; i < dados.length; i++) {
+			if (dadosMarcados[i]) {
+				resultado[1] ++; //Se le suma a las calaveras y luego se borran
+			} else {
+				resultado[dados[i].getValorCara()] ++;
+			}
+		}
+		
+		return resultado;
+	}
+	
 	public int calcularPuntuacion(int[] carasObtenidas, String carta) {
 		//Reinicia la puntuación
 		puntuacion = 0;
@@ -72,7 +87,7 @@ public class Tirada {
 			}
 		}
 		//Si hay 3 o más calaveras devuelve -1 (sin puntuación)
-		if (carasObtenidas[1] >= 3 && !carta.equals("COFRE")) {
+		if (carasObtenidas[1] >= 3) {
 			return -1;
 		}
 		//Si la carta es un pirata se dobla la puntuación
@@ -81,6 +96,12 @@ public class Tirada {
 		}		
 		
 		return puntuacion;
+	}
+	
+	public int calcularPuntuacionCofre(int[] carasObtenidas) {
+		carasObtenidas[1] = 0;
+		
+		return calcularPuntuacion(carasObtenidas, "null");
 	}
 	
 	public int getPuntuacion() {

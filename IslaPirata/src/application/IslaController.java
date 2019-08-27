@@ -148,7 +148,8 @@ public class IslaController {
 		if (puntos > 0) { //Si es una puntuación normal
 			resultado.setText(String.valueOf(puntos)); 
 		} else if (puntos < 0 && carta.toString().equals("COFRE")) { //Si salen 3 calaveras pero tiene un cofre que guarda la puntuación
-			resultado.setText(String.valueOf(tirada.getPuntuacion()));
+			int puntosCofre = tirada.calcularPuntuacionCofre((tirada.obtenerTiradaCofre(dados, dadosMarcados)));
+			resultado.setText(String.valueOf(puntosCofre));
 		} else { //Si salen 3 calaveras y no tiene cofre.
 			resultado.setText("0");
 		}
