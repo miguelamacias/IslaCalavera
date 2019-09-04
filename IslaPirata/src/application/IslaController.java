@@ -301,8 +301,12 @@ public class IslaController {
 		if (nombre.isPresent()) {
 			baseDatos.guardarPuntuacionBD(nombre.get(), acumuladoInt);
 		}
-		//TODO cambiar esto:
-		//areaPuntuaciones.setText(baseDatos.getPuntuaciones());
+		//Mostrar la tabla con la puntuacion actualizada
+		areaPuntuaciones.getChildren().clear();
+		Text cabeceraTabla = new Text(String.format("%-16s%-19s%s", "Nombre", "Puntuación", "Fecha"));
+		cabeceraTabla.setId("cabeceratabla");
+		cabeceraTabla.setFont(Font.font("Consolas", FontWeight.BOLD, 20));
+		areaPuntuaciones.getChildren().addAll(cabeceraTabla, baseDatos.getPuntuacionesText());
 		
 	}
 	

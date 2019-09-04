@@ -35,7 +35,8 @@ public class Dado {
 	 */
 	public int tirar() {
 		SecureRandom generadorNumeros = new SecureRandom();
-		valorCara = generadorNumeros.nextInt(6) + 1;
+		int[] probabilidades = { 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6 };
+		valorCara = probabilidades[generadorNumeros.nextInt(probabilidades.length)];
 		textoCara = caras[valorCara];
 		return valorCara;
 	}
@@ -47,19 +48,20 @@ public class Dado {
 	public String toString() {
 		return valorCara + textoCara;
 	}
+	
 	/**
-	 * Método que devuelve el valor numérico de la cara que tiene
+	 * Método que devuelve el nombre textual de la cara que tiene
 	 * almacenada el dado.
-	 * @return <code>int</code> Valor numérico entre 1 y 6 obtenido al azar.
+	 * @return <code>String</code> Nombre de la cara.
 	 */
 	public String getTextoCara() {
 		return textoCara;
 	}
 	
 	/**
-	 * Método que devuelve el nombre textual de la cara que tiene
+	 * Método que devuelve el valor numérico de la cara que tiene
 	 * almacenada el dado.
-	 * @return <code>int</code> Valor numérico entre 1 y 6 obtenido al azar.
+	 * @return <code>int</code> Valor numérico entre 1 y 6.
 	 */
 	public int getValorCara() {
 		return valorCara;
