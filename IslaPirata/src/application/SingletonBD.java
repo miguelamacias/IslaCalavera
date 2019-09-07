@@ -1,5 +1,6 @@
 package application;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,6 +10,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -52,9 +54,14 @@ public class SingletonBD {
 		Connection conexion = null;
 		Statement sentencia = null;
 		ResultSet resultado = null;
+		File archivoPass = null;
 
 		try {
-			conexion = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/BC7Yxrr0d0?useSSL=false", "BC7Yxrr0d0", "HqgJ0PxyA1");
+			archivoPass = new File("pass.conf");			
+			Scanner entrada = new Scanner(archivoPass);
+			String pass = entrada.nextLine();
+			
+			conexion = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/BC7Yxrr0d0?useSSL=false", "BC7Yxrr0d0", pass);
 			sentencia = conexion.createStatement();
 			resultado = sentencia.executeQuery("SELECT nombre, puntuacion, fecha FROM puntuaciones ORDER BY puntuacion DESC");
 			
@@ -64,7 +71,7 @@ public class SingletonBD {
 				puntuaciones.append(String.format("%-25s%-11s%s%n", resultado.getString(1), resultado.getString(2), formatearFecha(fecha)));
 			}
 			
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if (sentencia != null) {
@@ -94,9 +101,14 @@ public class SingletonBD {
 	public void guardarPuntuacionBD(String nombre, int puntuacion) {
 		Connection conexion = null;
 		PreparedStatement sentencia = null;
+		File archivoPass = null;
 		
 		try {
-			conexion = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/BC7Yxrr0d0?useSSL=false", "BC7Yxrr0d0", "HqgJ0PxyA1");
+			archivoPass = new File("pass.conf");			
+			Scanner entrada = new Scanner(archivoPass);
+			String pass = entrada.nextLine();
+			
+			conexion = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/BC7Yxrr0d0?useSSL=false", "BC7Yxrr0d0", pass);
 			sentencia = conexion.prepareStatement("INSERT INTO puntuaciones (nombre, puntuacion) VALUES(?, ?)");
 			if (nombre.length() > 23) {
 				sentencia.setString(1, nombre.substring(0, 23));
@@ -107,8 +119,9 @@ public class SingletonBD {
 			sentencia.executeUpdate();
 			sentencia.close();
 			conexion.close();
+			entrada.close();
 				
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if (sentencia != null) {
