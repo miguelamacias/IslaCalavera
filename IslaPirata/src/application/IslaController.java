@@ -2,6 +2,7 @@ package application;
 
 import java.util.Arrays;
 import java.util.Optional;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -143,7 +144,7 @@ public class IslaController {
 		controlCalaveras();
 		
 		//Realiza una tirada y calcula los puntos obtenidos
-		int puntos = tirada.calcularPuntuacion(tirada.obtenerTirada(dados, dadosMarcados), carta.toString());
+		int puntos = tirada.calcularPuntuacion(tirada.obtenerTirada(dados, dadosMarcados), carta.getValor());
 		
 		if (puntos > 0) { //Si es una puntuación normal
 			resultado.setText(String.valueOf(puntos)); 

@@ -1,5 +1,7 @@
 package application;
 
+import application.Carta.ValorCarta;
+
 public class Tirada {
 		
 	private int puntuacion;
@@ -33,31 +35,32 @@ public class Tirada {
 		return resultado;
 	}
 	
-	public int calcularPuntuacion(int[] carasObtenidas, String carta) {
+	public int calcularPuntuacion(int[] carasObtenidas, ValorCarta carta) {
 		//Reinicia la puntuación
 		puntuacion = 0;
 		
-		//Evalúa la carta y hace el efecto de la misma si es un efecto "de dado"
-		switch (carta) {
-		case "DIAMANTE":
-			carasObtenidas[2]++;
-			break;
-		case "ORO":
-			carasObtenidas[5]++;
-			break;
-		case "CALAVERA":
-			carasObtenidas[1]++;
-			break;
-		case "DOBLE_CALAVERA":
-			carasObtenidas[1] += 2;
-			break;
-		case "MONO_LORO":
-			carasObtenidas[4] += carasObtenidas[3];
-			carasObtenidas[3] = 0;
-		default:
-			break;
+		if (carta != null) {
+			//Evalúa la carta y hace el efecto de la misma si es un efecto "de dado"
+			switch (carta) {
+			case DIAMANTE:
+				carasObtenidas[2]++;
+				break;
+			case ORO:
+				carasObtenidas[5]++;
+				break;
+			case CALAVERA:
+				carasObtenidas[1]++;
+				break;
+			case DOBLE_CALAVERA:
+				carasObtenidas[1] += 2;
+				break;
+			case MONO_LORO:
+				carasObtenidas[4] += carasObtenidas[3];
+				carasObtenidas[3] = 0;
+			default:
+				break;
+			}
 		}
-		
 		//100 puntos por cada oro y diamante obtenidos
 		puntuacion += carasObtenidas[2] * 100;
 		puntuacion += carasObtenidas[5] * 100;
@@ -91,7 +94,7 @@ public class Tirada {
 			return -1;
 		}
 		//Si la carta es un pirata se dobla la puntuación
-		if (carta.equals("PIRATA")) {
+		if (carta == ValorCarta.PIRATA) {
 			puntuacion *= 2;
 		}		
 		
@@ -101,7 +104,7 @@ public class Tirada {
 	public int calcularPuntuacionCofre(int[] carasObtenidas) {
 		carasObtenidas[1] = 0;
 		
-		return calcularPuntuacion(carasObtenidas, "null");
+		return calcularPuntuacion(carasObtenidas, null);
 	}
 	
 	public int getPuntuacion() {
